@@ -13,19 +13,22 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
         <script>
             SC.initialize({
-              client_id: 'dovetune'
+                client_id: 'YOUR_CLIENT_ID'
             });
+            
             var json;
             var track_url = 'http://soundcloud.com/rennier-1/imagine-dragons-shots';
             SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
-              console.log(oEmbed);
-              json = oEmbed["html"];
-              //console.log("This is the url: " + json);
-              //json = json.replace("src=\\", "src=");
-              document.write(json);
+                console.log(oEmbed);
+                json = oEmbed["html"];
+                //console.log("This is the url: " + json);
+                //json = json.replace("src=\\", "src=");
+                document.write(json);
             });
         </script>
+
     </body>
 </html>
