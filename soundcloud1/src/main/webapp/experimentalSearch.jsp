@@ -17,18 +17,12 @@ SC.initialize({
   client_id: 'YOUR_CLIENT_ID'
 });
 function search_print() {
-             var form_text = "<!DOCTYPE html>";
-	     form_text += "<html>";
-	     form_text += "<head>";
-             form_text += "<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">";
-             form_text += "<link href=\"css/tanga.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen\" />";
-             form_text += "</head>";
- 	     form_text += "<h1>Search</h1>";
-              form_text += "<form action=\"experimentalSearch.jsp\">";
-            form_text += "<input type=\"text\" name=\"searchbox\" id=\"search_box\">";
-            form_text += "<input type=\"button\" value=\"Search\" onclick=\"e();\">";
-            form_text += "</form>";
-            document.write(form_text);
+             var form_text = "<h1>Search</h1>";
+             form_text += "<form action=\"experimentalSearch.jsp\">";
+             form_text += "<input type=\"text\" name=\"searchbox\" id=\"search_box\">";
+             form_text += "<input type=\"button\" value=\"Search\" onclick=\"e();\">";
+             form_text += "</form>";
+             document.write(form_text);
 }
     function e() {
     var message_entered =  document.getElementById("search_box").value;
