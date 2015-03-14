@@ -10,50 +10,60 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-<link href="css/tanga.css" type="text/css" rel="stylesheet" media="screen" />
+        <link href="tanga.css" type="text/css" rel="stylesheet" media="screen" />
         <script src="http://connect.soundcloud.com/sdk.js"></script>    
-<script>
-SC.initialize({
-  client_id: 'YOUR_CLIENT_ID'
-});
-function search_print() {
-             var form_text = "<h1>Search</h1>";
-             form_text += "<form action=\"experimentalSearch.jsp\">";
-             form_text += "<input type=\"text\" name=\"searchbox\" id=\"search_box\">";
-             form_text += "<input type=\"button\" value=\"Search\" onclick=\"e();\">";
-             form_text += "</form>";
-             document.write(form_text);
-}
-    function e() {
-    var message_entered =  document.getElementById("search_box").value;
-
-        // find all sounds of buskers licensed under 'creative commons share alike'
-search_print();
-        SC.get('/tracks', { q: message_entered, license: 'cc-by-sa' }, function(tracks) {
-  console.log(tracks.length + " search results");
-  for (var i = 0; i < tracks.length; i++) {
-   permalink = tracks[i]["permalink_url"];
-   title = tracks[i]["title"];
-   avatar = tracks[i]['user']['avatar_url'];
-   download = tracks[i]['download_url'];
-   artwork_url = tracks[i]['artwork_url'];
-   artist = tracks[i]['user']['username'];
-   console.log(tracks[i]);
-   document.write("<a href=\"" + avatar + "\" ><img src=\"" + artwork_url + "\" alt=\"Artwork Unavailable\"/></a><br>");   
-   document.write("<a href=\"" + permalink + "\">" + artist + "</a><span> - </span>");   
-   document.write("<a href=\"" + permalink + "\">" + title + "</a><br>");   
-   document.write("<hr>");
-  }
-   });
-};
-</script>
-
+        
+        
     </head>
-     
+    
     <body>
+        <script>
+            SC.initialize({
+                client_id: 'YOUR_CLIENT_ID'
+            });
+            //override document.write to append onto DOM
+            document.write=function(s){
+                var scripts = document.getElementsByTagName('script');
+                var lastScript = scripts[scripts.length-1];
+                lastScript.insertAdjacentHTML("beforebegin", s);
+            }
+            function search_print() {
+                var form_text = "<div class=\"column1\"><h1>Search</h1>";
+                form_text += "<form>";
+                form_text += "<input type=\"text\" name=\"searchbox\" id=\"search_box\">";
+                form_text += "<input type=\"button\" value=\"Search\" onclick=\"e();\">";
+                form_text += "</form></div>";
+                document.write(form_text);
+            }
+            function e() {
+                var message_entered =  document.getElementById("search_box").value;
+
+                // find all sounds of message_entered licensed under 'creative commons share alike'
+                SC.get('/tracks', { q: message_entered, license: 'cc-by-sa' }, function(tracks) {
+                    console.log(tracks.length + " search results");
+
+                    var search_results_formated = ("<div class=\"column1\"><article>");
+                    for (var i = 0; i < tracks.length; i++) {
+                        permalink = tracks[i]["permalink_url"];
+                        title = tracks[i]["title"];
+                        avatar = tracks[i]['user']['avatar_url'];
+                        download = tracks[i]['download_url'];
+                        artwork_url = tracks[i]['artwork_url'];
+                        artist = tracks[i]['user']['username'];
+                        console.log(tracks[i]);
+                        search_results_formated += ("<a href=\"" + avatar + "\" ><img src=\"" + artwork_url + "\" alt=\"Artwork Unavailable\"/></a><br>");   
+                        search_results_formated += ("<a href=\"" + permalink + "\">" + artist + "</a><span> - </span>");   
+                        search_results_formated += ("<a href=\"" + permalink + "\">" + title + "</a><br>");   
+                        search_results_formated += ("<hr>");
+                    }
+                    search_results_formated += ("</div></article>");
+                    document.write(search_results_formated);
+                });
+            };
+        </script>
         <script>
             search_print();
         </script>
-        
+
     </body>
 </html>
