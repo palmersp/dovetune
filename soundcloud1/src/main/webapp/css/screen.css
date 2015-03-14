@@ -1,0 +1,274 @@
+/*
+Style the demo site plan
+    Created on : Mar 6, 2015
+    Author     : Blaine Robertson
+
+
+Key to Selector Types
+
+element - the name of any HTML element, specificity value = 0,0,0,1
+element, element - compound selector, any # of elements, separated by commas, specificity = 0,0,0,1
+element::type - pseudo-element, pre-programmed into CSS (e.g. p::first-letter), specificity = 0,0,0,1
+element element - second element is a descendent of the first, specificity is 0,0,0,2
+element > element - second element is a child of the first, specificity is 0,0,0,2
+element + element - second element is the next sibling to the first, specificity is 0,0,0,2
+element ~ element - second element is preceeded by the first, specificity is 0,0,0,2
+.class - ties to class="..." in the HTML markup, specificity = 0,0,1,0
+:event - pseudo-class, preprogrammed into CSS (e.g. a:hover), specificty = 0,0,1,0
+[attribute] - brackets indicate an html attribute, the attribute name is inside, specificity = 0,0,1,0 
+#id - ties to id="..." in the HTML markup, specificity is 0,1,0,0
+style ="..." - inline style attribute with values in an html element, specificity is 1,0,0,0
+!important - statement added to a CSS declaration, specificity is 1,0,0,0,0
+
+**** See http://www.w3schools.com/cssref/css_selectors.asp for additional information ****
+*/
+
+@import url("normalize.css");
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+
+    font-size: 16px;
+    font-size: 1em;
+    line-height: 1;
+}
+/*General Style Rules*/
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+/*Style Links*/
+
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover,
+a:focus {
+
+}
+/*Heading Rules*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    letter-spacing: -1px;
+
+}
+
+h1 {
+    font-size: 2.25em;
+    /* 2.25 * 16 = 36 pixels */
+}
+
+h2 {
+    font-size: 1.75em;
+}
+
+h3 {
+    font-size: 1.375em;
+}
+
+h4,
+h5,
+h6 {
+    font-size: 1em;
+}
+
+p {
+    line-height: 1.5;
+}
+
+/*
+any paragraph that immediately follows a heading
+*/
+h1+p,
+h2+p,
+h3+p,
+h4+p,
+h5+p,
+h6+p {
+    margin-top: .15em;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+/*Float Clearing Class Rule*/
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    font-size: 0;
+}
+/*General rule for all inner divs of ARIA structures*/
+
+body>div {
+    position: relative;
+    /* declare an object to be a flex parent */
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+*[role]>div {
+    width: 90%;
+    margin: 0 auto;
+}
+/* **************  Now we start being specific ****************** */
+/*Main Header Rules*/
+
+header h1 {
+    font: 3em Georgia, Times, "Times New Roman", serif;
+}
+/*Main Navigation styles */
+
+nav[role=navigation] {
+    width: 100%;
+    box-shadow: 0 0 5px #000;
+    overflow: auto;
+    /* Needed for the floating li's */
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    /* default is horizontal orientation */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+nav ul li {
+    margin-right: 5px;
+    padding: 0;
+    /*float: left;*/
+    /* flex can take up to 3 values first: can I grow, 2: can I shrink, 3: default size*/
+    flex: 0 0 5.5em;
+}
+
+nav ul li a {
+    display: block;
+    /* big enough for your thumb to click */
+/*    padding: 0 20px;*/
+/* fill all space available */
+flex: 1;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+}
+/*Main Content Container Rules*/
+
+main {
+    margin-top: 1em;
+}
+
+main>div {
+    padding: 30px;
+    min-height: 500px;
+    margin-top: 20px;
+}
+/*Main Footer Rule*/
+
+footer[role] {
+    width: 100%;
+    box-shadow: 0 0 5px #000;
+    padding: 1em 0 2em;
+    font-size: .75em;
+}
+
+footer[role] ul {
+    padding: 0;
+}
+
+footer[role] li {
+    float: left;
+    margin-right: 5px;
+}
+
+footer[role] a:hover {
+    color: #fff;
+}
+/*Color Style Table Rules*/
+
+td.color {
+    width: 7em;
+    height: 7em;
+    border: 1px solid #000;
+    font-size: .8em;
+    text-align: center;
+}
+
+td.color:nth-of-type(1) {
+
+}
+
+td.color:nth-of-type(2) {
+
+}
+
+td.color:nth-of-type(3) {
+
+}
+
+td.color:nth-of-type(4) {
+}
+
+td.color:nth-of-type(5) {
+}
+
+td.color:nth-of-type(6) {
+}
+/*Typography Tables Rules*/
+
+table#type {
+    width: 100%;
+    border: 1px solid #000;
+    font-size: .7em;
+}
+
+table#type tr {
+    border: 1px solid #000;
+}
+
+table#type td {
+    padding: .5em .125em;
+}
+
+table#type tr:first-of-type {
+    text-align: left;
+    font-weight: bold;
+}
+
+table#type tr:first-of-type th:first-of-type {
+    padding-left: 1.5em;
+}
