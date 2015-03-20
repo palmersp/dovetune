@@ -1,12 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Content created by Adam Quinton
  */
 package com.mycompany.soundcloud1;
 
 import java.io.IOException;
-import com.mycompany.soundcloud1.curl.Curl;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author stake
+ * @author adam
  */
-@WebServlet(name = "GetSong", urlPatterns = {"/GetSong"})
-public class GetSong extends HttpServlet {
+@WebServlet(name = "ParseSearch", urlPatterns = {"/ParseSearch"})
+public class PassSearch extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +29,11 @@ public class GetSong extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Curl.curl();
+        response.setContentType("text/html;charset=UTF-8");
+       String url = request.getParameter("soundcloudUrl");
+       //TODO: possibly write out what was searched for to a history file
+       request.getSession().setAttribute("soundcloudUrl", url);
+       request.getRequestDispatcher("SearchResults.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

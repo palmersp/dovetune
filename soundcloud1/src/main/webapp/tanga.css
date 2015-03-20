@@ -32,7 +32,7 @@
 html {
     display: table;
     margin: auto;
-    background-color: #1A1A1A;
+    background-color: #c5e3fd;
 }
 
 input[type='range']{
@@ -83,8 +83,7 @@ nav a {
 }
 
 img.align-left {
-    float: left;
-    margin-right: 0px;
+      margin-right: 0px;
 }
 
 body
@@ -98,17 +97,14 @@ body
 }
 aside
 {
-    float:right;
-    width: 80%;
-    max-width: 175px;
-    max-height: 175px;
+float: left;
     border: 1px solid grey;
     margin: 15px;
     padding: 15px;
 }
 img {
     padding: 10px;
-    float:left;
+    float: none; 
     max-width: 100%;
 }
 nav
@@ -120,6 +116,12 @@ nav
 
 #logo {
     padding-bottom: 70px;
+}
+
+#column1 {
+    margin: 1%;
+    width: 30%;
+    float: left;
 }
 
 h1 {
@@ -209,6 +211,7 @@ footer {
     font-size: 80%;
     text-align: right;
 }
+
 a:hover, a.on {
     color: #152A39;
     background-color: #CBE86B;
