@@ -20,7 +20,8 @@
             });
             
             var json;
-            var track_url = 'http://soundcloud.com/rennier-1/imagine-dragons-shots';
+          //  var track_url = 'http://soundcloud.com/rennier-1/imagine-dragons-shots';
+          var track_url = '${soundcloudUrl}';
             SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
                 console.log(oEmbed);
                 json = oEmbed["html"];
@@ -29,6 +30,5 @@
                 document.write(json);
             });
         </script>
-
     </body>
 </html>
