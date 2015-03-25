@@ -10,10 +10,9 @@
     <head>
         <script src="http://connect.soundcloud.com/sdk.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Details Page | Dovetune</title>
     </head>
     <body>
-        
         <script>
             SC.initialize({
                 client_id: 'YOUR_CLIENT_ID'
@@ -25,8 +24,7 @@
             SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
                 console.log(oEmbed);
                 json = oEmbed["html"];
-                //console.log("This is the url: " + json);
-                //json = json.replace("src=\\", "src=");
+
                 document.write(json);
             });
         </script>

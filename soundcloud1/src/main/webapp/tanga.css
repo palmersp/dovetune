@@ -88,6 +88,10 @@ img.align-left {
 
 body
 {
+    width:  100%;
+
+}
+main {
     background-color: #F2E9E1;
     width: 80%;
     max-width: 100%;
@@ -118,14 +122,25 @@ nav
     padding-bottom: 70px;
 }
 
-#column1 {
+#column1, #column2, #column3, #column4 {
+    margin: 0%;
+    width: 30%;
+    float: left;
+}
+
+#column4 {
     margin: 1%;
     width: 30%;
     float: left;
 }
 
-h1 {
+h1, h2, h3 {
+    line-height: 170%;
     float: top;	
+}
+
+h1 {
+
     background-color: #152A39;
     color: #EFEFEF;
     color: #9CF0B9;
@@ -138,7 +153,6 @@ h1 {
  //    font-weight: normal;
 }
 h2 {
-    float: top; 
     background-color: #1E4662;
     color: #9CF0B9;
     text-shadow: 1px 1px 3px #111111;
@@ -153,7 +167,6 @@ h2 {
     font-size: 18px;
 }
 h3 {
-    float: top; 
     background-color: #266D99;
     color: #9CF0B9;
     text-shadow: 1px 1px 3px #111111;
@@ -221,8 +234,4 @@ a:hover, a.on {
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
-    -webkit-transition: all .5s ease-in-out;
-    -moz-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
 }
