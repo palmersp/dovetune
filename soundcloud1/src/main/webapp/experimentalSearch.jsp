@@ -59,7 +59,6 @@
     });
             };
         </script>
-       
         <div id="searchdiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
             <h1>Search</h1><form action="javascript:e()" onsubmit="return e();">
                 <input type="text" name="searchbox" id="search_box">
