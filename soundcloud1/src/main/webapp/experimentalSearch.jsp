@@ -43,7 +43,7 @@
             
             diva = document.createElement('div');
             a = document.createElement('a');
-            a.href = avatar;
+            a.href = "experiment.jsp?soundcloudUrl=" + permalink;
             a.innerHTML = title;
             img = document.createElement('img');
             img.src = artwork_url;
@@ -60,10 +60,14 @@
             };
         </script>
         <div id="searchdiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
-            <h1>Search</h1><form action="javascript:e()" onsubmit="return e();">
+            <h1>Search</h1>
+            <form action="javascript:e()" onsubmit="return e();">
                 <input type="text" name="searchbox" id="search_box">
                 <input type="button" value="Search" onclick="e();">
             </form>
+            <div style="border: solid;">
+                <h1 style="text-align: center;">Search Results</h1>
+            </div>
         </div>
     </body>
 </html>

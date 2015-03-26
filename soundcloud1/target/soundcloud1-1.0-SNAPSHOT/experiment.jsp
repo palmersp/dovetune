@@ -10,6 +10,8 @@
     <head>
         <script src="http://connect.soundcloud.com/sdk.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="tanga.css" type="text/css" rel="stylesheet" media="screen" />
+
         <title>Details Page | Dovetune</title>
     </head>
     <body>
@@ -19,15 +21,28 @@
             });
             
             var json;
-          //  var track_url = 'http://soundcloud.com/rennier-1/imagine-dragons-shots';
-          var track_url = '${soundcloudUrl}';
-            SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
-                console.log(oEmbed);
-                json = oEmbed["html"];
+            var track_url = '${param.soundcloudUrl}';
 
-                document.write(json);
+            SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
+                //console.log(oEmbed);
+                json = oEmbed["html"];
+                
+                console.log(json);
+                var parent = document.getElementById("detailsDiv");
+                var content = parent.innerHTML;
+                content += json;
+                document.getElementById("detailsDiv").innerHTML = content;
             });
         </script>
-
+        <div id="detailsDiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
+            <h1>Search</h1>
+            <form action="javascript:e()" onsubmit="return e();">
+                <input type="text" name="searchbox" id="search_box">
+                <input type="button" value="Search" onclick="e();">
+            </form>
+            <div style="border: solid;">
+                <h1 style="text-align: center;">Name of Song</h1>
+            </div>
+        </div>
     </body>
 </html>
