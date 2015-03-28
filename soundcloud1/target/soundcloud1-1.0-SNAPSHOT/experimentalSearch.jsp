@@ -23,47 +23,58 @@
                 client_id: 'YOUR_CLIENT_ID'
             });
 
-            function e() {
-                var message_entered =  document.getElementById("search_box").value;
+            var search = getParameterByName('searchbox');
+            console.log(search);
+            if (search) {
+                var message_entered =  search;
                 // find all sounds of message_entered licensed under 'creative commons share alike'
                 SC.get('/tracks', { q: message_entered }, function(tracks) {
                     console.log(tracks.length + " search results");
 
                     var parent = document.getElementById("searchdiv");
-        for (var i = 0; i < tracks.length; i++) {
-            permalink = tracks[i]["permalink_url"];
-            title = tracks[i]["title"];
-            avatar = tracks[i]['user']['avatar_url'];
-            download = tracks[i]['download_url'];
-            artwork_url = tracks[i]['artwork_url'];
-            artist = tracks[i]['user']['username'];
-            
-            //debug
-            console.log(tracks[i]);
-            
-            diva = document.createElement('div');
-            a = document.createElement('a');
-            a.href = "experiment.jsp?soundcloudUrl=" + permalink;
-            a.innerHTML = title;
-            img = document.createElement('img');
-            img.src = artwork_url;
-            img.alt = "Image Unavailable";
-            a.appendChild(document.createElement('br'));
-            img.setAttribute("width", "30%");            
-            a.appendChild(img);            
-            diva.setAttribute("class","resultdiv");
-            diva.appendChild(document.createElement('hr'));
-            diva.appendChild(a);
-            parent.appendChild(diva);
-        }
-    });
+                    
+                    for (var i = 0; i < tracks.length; i++) {
+                        permalink = tracks[i]["permalink_url"];
+                        title = tracks[i]["title"];
+                        avatar = tracks[i]['user']['avatar_url'];
+                        download = tracks[i]['download_url'];
+                        artwork_url = tracks[i]['artwork_url'];
+                        artist = tracks[i]['user']['username'];
+
+                        //debug
+                        console.log(tracks[i]);
+
+                        diva = document.createElement('div');
+                        a = document.createElement('a');
+                        a.href = "experiment.jsp?soundcloudUrl=" + permalink + "&songName=" + title;
+                        a.innerHTML = title;
+                        img = document.createElement('img');
+                        img.src = artwork_url;
+                        img.alt = "Image Unavailable";
+                        a.appendChild(document.createElement('br'));
+                        img.setAttribute("width", "30%");            
+                        a.appendChild(img);            
+                        diva.setAttribute("class","resultdiv");
+                        diva.appendChild(document.createElement('hr'));
+                        diva.appendChild(a);
+                        parent.appendChild(diva);
+                    }
+                });
             };
+            
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+            
         </script>
         <div id="searchdiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
             <h1>Search</h1>
-            <form action="javascript:e()" onsubmit="return e();">
-                <input type="text" name="searchbox" id="search_box">
-                <input type="button" value="Search" onclick="e();">
+            <form action="experimentalSearch.jsp" method="GET">
+                <input type="text" size="100%" name="searchbox" id="search_box">
+                <input type="submit" value="Search">
             </form>
             <div style="border: solid;">
                 <h1 style="text-align: center;">Search Results</h1>

@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="tanga.css" type="text/css" rel="stylesheet" media="screen" />
 
-        <title>Details Page | Dovetune</title>
+        <title>Details Page | DoveTune</title>
     </head>
     <body>
         <script>
@@ -36,12 +36,12 @@
         </script>
         <div id="detailsDiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
             <h1>Search</h1>
-            <form action="javascript:e()" onsubmit="return e();">
-                <input type="text" name="searchbox" id="search_box">
-                <input type="button" value="Search" onclick="e();">
+            <form action="experimentalSearch.jsp" method="GET">
+                <input type="text" size="100%" name="searchbox" id="search_box">
+                <input type="submit" value="Search">
             </form>
             <div style="border: solid;">
-                <h1 style="text-align: center;">Name of Song</h1>
+                <h1 style="text-align: center;">${param.songName}</h1>
             </div>
         </div>
     </body>
