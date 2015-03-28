@@ -13,6 +13,11 @@
         <link href="tanga.css" type="text/css" rel="stylesheet" media="screen" />
 
         <title>Details Page | DoveTune</title>
+        <style>
+            iframe {
+                height: 150px !important;
+            }
+        </style>
     </head>
     <body>
         <script>
@@ -32,16 +37,17 @@
                 var content = parent.innerHTML;
                 content += json;
                 document.getElementById("detailsDiv").innerHTML = content;
+                document.getElementsByTagName('iframe').style.height = "100";
             });
         </script>
         <div id="detailsDiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
-            <h1>Search</h1>
+            <h1>Dovetune</h1>
             <form action="experimentalSearch.jsp" method="GET">
                 <input type="text" size="100%" name="searchbox" id="search_box">
                 <input type="submit" value="Search">
             </form>
-            <div style="border: solid;">
-                <h1 style="text-align: center;">${param.songName}</h1>
+            <div>
+                <h2 style="text-align: center;">${param.songName}</h2>
             </div>
         </div>
     </body>

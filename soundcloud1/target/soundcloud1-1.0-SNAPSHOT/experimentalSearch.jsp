@@ -18,7 +18,7 @@
         </style>
     </head>
     <body>
-        <script>
+        <script  type="text/javascript">
             SC.initialize({
                 client_id: 'YOUR_CLIENT_ID'
             });
@@ -32,7 +32,9 @@
                     console.log(tracks.length + " search results");
 
                     var parent = document.getElementById("searchdiv");
-                    
+                    h2 = document.createElement('h2');
+                    h2.innerHTML = "Search Results";
+                    parent.appendChild(h2);
                     for (var i = 0; i < tracks.length; i++) {
                         permalink = tracks[i]["permalink_url"];
                         title = tracks[i]["title"];
@@ -68,17 +70,14 @@
                     results = regex.exec(location.search);
                 return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
             }
-            
+
         </script>
-        <div id="searchdiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
+        <div id="searchdiv" style="min-width: 700px;max-width: 700px; border: solid;" >
             <h1>Search</h1>
             <form action="experimentalSearch.jsp" method="GET">
                 <input type="text" size="100%" name="searchbox" id="search_box">
                 <input type="submit" value="Search">
             </form>
-            <div style="border: solid;">
-                <h1 style="text-align: center;">Search Results</h1>
-            </div>
         </div>
     </body>
 </html>
