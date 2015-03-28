@@ -32,7 +32,9 @@
                     console.log(tracks.length + " search results");
 
                     var parent = document.getElementById("searchdiv");
-                    
+                    h2 = document.createElement('h2');
+                    h2.innerHTML = "Search Results";
+                    parent.appendChild(h2);
                     for (var i = 0; i < tracks.length; i++) {
                         permalink = tracks[i]["permalink_url"];
                         title = tracks[i]["title"];
@@ -45,6 +47,7 @@
                         console.log(tracks[i]);
 
                         diva = document.createElement('div');
+                        
                         a = document.createElement('a');
                         a.href = "details.jsp?soundcloudUrl=" + permalink + "&songName=" + title;
                         a.innerHTML = title;
@@ -71,15 +74,12 @@
             
         </script>
         <div id="searchdiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
-            <h1 style="text-align: center;">Dovetune</h1><br/>
-            
+            <h1 style="text-align: center;">Dovetune</h1>
+            <h1 style="text-align: center;"><a href="SignIn">Sign In to Twitter</a></h1>
             <form action="search.jsp" method="GET">
                 <input type="text" size="100%" name="searchbox" id="search_box">
                 <input type="submit" value="Search">
             </form>
-            <div style="border: solid;">
-                <h1 style="text-align: center;">Search Results</h1>
-            </div>
         </div>
     </body>
 </html>
