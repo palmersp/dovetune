@@ -41,7 +41,7 @@
                 <input type="submit" value="Search">
             </form>
             <div style="border: solid;">
-                <h1 style="text-align: center;">${param.songName}</h1>
+                <h2 style="text-align: center;">${param.songName}</h2>
             </div>
         </div>
     </body>
