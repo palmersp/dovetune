@@ -71,7 +71,8 @@
             
         </script>
         <div id="searchdiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
-            <h1>Search</h1>
+            <h1 style="text-align: center;">Dovetune</h1><br/>
+            
             <form action="experimentalSearch.jsp" method="GET">
                 <input type="text" size="100%" name="searchbox" id="search_box">
                 <input type="submit" value="Search">
