@@ -11,7 +11,11 @@
         <script src="http://connect.soundcloud.com/sdk.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="tanga.css" type="text/css" rel="stylesheet" media="screen" />
-
+        <style>
+            iframe {
+                height: 150px !important
+            }
+        </style>
         <title>Details Page | DoveTune</title>
     </head>
     <body>
@@ -28,6 +32,7 @@
                 json = oEmbed["html"];
                 
                 console.log(json);
+                
                 var parent = document.getElementById("detailsDiv");
                 var content = parent.innerHTML;
                 content += json;
@@ -35,7 +40,8 @@
             });
         </script>
         <div id="detailsDiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
-            <h1>Search</h1>
+            <h1 style="text-align: center;">Dovetune</h1>
+            <h1 style="text-align: center;"><a href="SignIn">Sign In to Twitter</a></h1>
             <form action="search.jsp" method="GET">
                 <input type="text" size="100%" name="searchbox" id="search_box">
                 <input type="submit" value="Search">
