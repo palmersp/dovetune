@@ -6,24 +6,23 @@
 package com.mycompany.dovetune;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.RequestToken;
-import twitter4j.conf.ConfigurationBuilder;
 
 /**
  *
  * @author Spencer
  */
-@WebServlet(name = "SignIn", urlPatterns = {"/SignIn"})
-public class SignIn extends HttpServlet {
+@WebServlet(name = "PostTweet", urlPatterns = {"/PostTweet"})
+public class PostTweet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,30 +35,15 @@ public class SignIn extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       ConfigurationBuilder cb = new ConfigurationBuilder();
-cb.setDebugEnabled(true)
-  .setOAuthConsumerKey("Djgh7AmnNzxmv7fXzqlsdj8RB")
-  .setOAuthConsumerSecret("Mnj40YllwKBBZvOkndnrmxl1TaNvcnS0x40PFhhDnMHysgzHum");
-
-Twitter twitter = new TwitterFactory(cb.build()).getInstance();
-
-request.getSession().setAttribute("twitter", twitter);
-try {
-StringBuffer callbackURL = request.getRequestURL();
-System.out.println( "TwitterLoginServlet:callbackURL:" + callbackURL );
-
-int index = callbackURL.lastIndexOf("/");
-callbackURL.replace(index, callbackURL.length(), "").append("/Callback");
- 
-RequestToken requestToken = twitter.getOAuthRequestToken(callbackURL.toString());
-request.getSession().setAttribute("requestToken", requestToken);
-System.out.println( "requestToken.getAuthenticationURL():" + requestToken.getAuthenticationURL() );
-response.sendRedirect(requestToken.getAuthenticationURL());
-
- 
-} catch (TwitterException e) {
-throw new ServletException(e);
-}
+    
+        Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
+        String tweetItem = request.getParameter("tweet");
+        
+        try {
+            Status status = twitter.updateStatus(tweetItem + " #DoveTune #SoundCloud");
+        } catch (TwitterException ex) {
+            Logger.getLogger(PostTweet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

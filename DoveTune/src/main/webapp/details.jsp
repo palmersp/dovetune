@@ -33,13 +33,14 @@
                 
                 console.log(json);
                 
-                var parent = document.getElementById("detailsDiv");
+                var parent = document.getElementById("details");
                 var content = parent.innerHTML;
                 content += json;
-                document.getElementById("detailsDiv").innerHTML = content;
+                document.getElementById("details").innerHTML = content;
             });
         </script>
         <div id="detailsDiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
+            <div id="details">
             <h1 style="text-align: center;">Dovetune</h1>
             <h1 style="text-align: center;"><a href="SignIn">Sign In to Twitter</a></h1>
             <form action="search.jsp" method="GET">
@@ -49,6 +50,8 @@
             <div style="border: solid;">
                 <h2 style="text-align: center;">${param.songName}</h2>
             </div>
+            </div>
+             ${list}
         </div>
     </body>
 </html>

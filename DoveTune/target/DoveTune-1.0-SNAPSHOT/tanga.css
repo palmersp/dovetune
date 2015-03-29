@@ -235,3 +235,23 @@ a:hover, a.on {
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
 }
+
+#detailsDiv ul{
+    padding: 0;
+    margin: 0;
+}
+#detailsDiv li{
+    list-style: none;
+    background: white;
+    border-top: solid 1px gray;
+    padding: 20px;
+    font-family: Verdana;
+    line-height: 1.5;
+}
+input[type=text]{
+    width: 90%;
+}
+
+.hashtags {
+    color: #1E4662;
+}
