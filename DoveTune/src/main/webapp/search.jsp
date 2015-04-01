@@ -49,7 +49,7 @@
                         diva = document.createElement('div');
                         
                         a = document.createElement('a');
-                        a.href = "details.jsp?soundcloudUrl=" + permalink + "&songName=" + title;
+                        a.href = "SearchTwitter?soundcloudUrl=" + permalink + "&songName=" + title;
                         a.innerHTML = title;
                         img = document.createElement('img');
                         img.src = artwork_url;
@@ -77,7 +77,7 @@
             <h1 style="text-align: center;">Dovetune</h1>
             <h1 style="text-align: center;"><a href="SignIn">Sign In to Twitter</a></h1>
             <form action="search.jsp" method="GET">
-                <input type="text" size="100%" name="searchbox" id="search_box">
+                <input type="text" name="searchbox" id="search_box">
                 <input type="submit" value="Search">
             </form>
         </div>

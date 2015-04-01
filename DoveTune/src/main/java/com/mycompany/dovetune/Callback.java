@@ -6,24 +6,20 @@
 package com.mycompany.dovetune;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
 import twitter4j.auth.RequestToken;
-import twitter4j.conf.ConfigurationBuilder;
 
 /**
  *
  * @author Spencer
  */
-@WebServlet(name = "SignIn", urlPatterns = {"/SignIn"})
-public class SignIn extends HttpServlet {
+@WebServlet(name = "Callback", urlPatterns = {"/Callback"})
+public class Callback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,30 +32,20 @@ public class SignIn extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       ConfigurationBuilder cb = new ConfigurationBuilder();
-cb.setDebugEnabled(true)
-  .setOAuthConsumerKey("")
-  .setOAuthConsumerSecret("");
-
-Twitter twitter = new TwitterFactory(cb.build()).getInstance();
-
-request.getSession().setAttribute("twitter", twitter);
-try {
-StringBuffer callbackURL = request.getRequestURL();
-System.out.println( "TwitterLoginServlet:callbackURL:" + callbackURL );
-
-int index = callbackURL.lastIndexOf("/");
-callbackURL.replace(index, callbackURL.length(), "").append("/Callback");
- 
-RequestToken requestToken = twitter.getOAuthRequestToken(callbackURL.toString());
-request.getSession().setAttribute("requestToken", requestToken);
-System.out.println( "requestToken.getAuthenticationURL():" + requestToken.getAuthenticationURL() );
-response.sendRedirect(requestToken.getAuthenticationURL());
-
- 
-} catch (TwitterException e) {
-throw new ServletException(e);
-}
+        response.setContentType("text/html;charset=UTF-8");
+     
+        Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
+        RequestToken requestToken = (RequestToken)request.getSession().getAttribute("requestToken");
+        System.out.println( "TwitterCallbackServlet:requestToken:" + requestToken);
+        String verifier = request.getParameter("oauth_verifier");
+        
+        try {
+            twitter.getOAuthAccessToken(requestToken, verifier);
+            request.getSession().removeAttribute("requestToken");
+        } catch (Exception e) {
+         throw new ServletException(e);
+        }
+        response.sendRedirect("search.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
