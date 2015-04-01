@@ -38,8 +38,8 @@ public class SignIn extends HttpServlet {
             throws ServletException, IOException {
        ConfigurationBuilder cb = new ConfigurationBuilder();
 cb.setDebugEnabled(true)
-  .setOAuthConsumerKey("")
-  .setOAuthConsumerSecret("");
+  .setOAuthConsumerKey("Djgh7AmnNzxmv7fXzqlsdj8RB")
+  .setOAuthConsumerSecret("Mnj40YllwKBBZvOkndnrmxl1TaNvcnS0x40PFhhDnMHysgzHum");
 
 Twitter twitter = new TwitterFactory(cb.build()).getInstance();
 

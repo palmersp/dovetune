@@ -39,33 +39,41 @@ public class SearchTwitter extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, TwitterException {
-        
+
              Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
-             out.println(twitter.toString());
              String soundcloudUrl = request.getParameter("soundcloudUrl");
              String songName = request.getParameter("songName");
+             out.println(twitter.toString());
+             
 
+             int i = songName.indexOf("- ");
+             String song = songName.substring(i + 2);
         try {
-//            Query query = new Query(songName + " #DoveTune #SoundCloud");
-              Query query = new Query("#" + songName);
+//            Query query = new Query("#" + song + " #DoveTune #SoundCloud");
+              Query query = new Query("#" + song);
 
             QueryResult result = twitter.search(query);
 
                 List<Status> tweets = result.getTweets();
-                String list = "<ul>";
+//                String list = "<ulid='tweetList'>";
+                String list = "";
                 for (Status tweet : tweets) {
-                   list += "<li><strong>" +tweet.getUser().getName() + " @" + tweet.getUser().getScreenName() + "</strong> - " + tweet.getText() + "</li>";
+                   list += "<li><img class='profileImg' src='" + tweet.getUser().getProfileImageURL() + "' title='Profile Image' alt='Profile Image'><strong>" +tweet.getUser().getName() + " @" + tweet.getUser().getScreenName() + "</strong> - " + tweet.getText() + "</li>";
                 }
-                list += "</ul>";
+//                list += "</ul>";
 //                list = list.replace("#" + songName + "", "<strong class='hashtags'>#"+ songName +"</strong>");
-                int i = songName.indexOf("- ");
-                String song = songName.substring(i + 2);
+//                int i = songName.indexOf("- ");
+//                String song = songName.substring(i + 2);
                 list = list.replace("#" + song, "<strong class='hashtags'>#" + song + "</strong>");
                 list = list.replace("#DoveTune", "<strong class='hashtags'>#DoveTune</strong>");
                 list = list.replace("#SoundCloud", "<strong class='hashtags'>#SoundCloud</strong>");
+                String songL = song;
+                songL = songL.toLowerCase();
+                list = list.replace("#" + songL, "<strong class='hashtags'>#" + songL + "</strong>");
 
                 request.setAttribute("soundcloudUrl", soundcloudUrl);
                 request.setAttribute("songName", songName);
+                request.setAttribute("song", song);
                 request.setAttribute("list", list);
 
         } catch (TwitterException te) {
@@ -77,7 +85,7 @@ public class SearchTwitter extends HttpServlet {
 
       
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -236,6 +236,9 @@ a:hover, a.on {
     box-shadow: 0 8px 6px -6px black;
 }
 
+#detailsDiv {
+    background: white;
+}
 #detailsDiv ul{
     padding: 0;
     margin: 0;
@@ -247,6 +250,7 @@ a:hover, a.on {
     padding: 20px;
     font-family: Verdana;
     line-height: 1.5;
+    clear: both;
 }
 input[type=text]{
     width: 90%;
@@ -254,4 +258,7 @@ input[type=text]{
 
 .hashtags {
     color: #1E4662;
+}
+.profileImg {
+    float: left;
 }
