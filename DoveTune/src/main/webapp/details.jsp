@@ -4,6 +4,7 @@
     Author     : stake
 --%>
 
+<%@page import="twitter4j.Twitter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -55,7 +56,8 @@
                         console.log(newTweet);
                         var insertTweet = document.getElementById("tweetList");
                         insertTweet.insertBefore(newTweet, insertTweet.childNodes[0]);
-//                       document.getElementById("tweetList").innerHTML=xmlhttp.responseText;
+                        
+                        document.getElementById("tweet").value = "";
                     }
                     };
 		xmlhttp.open("POST", "PostTweet", true);
@@ -64,19 +66,31 @@
 	}
         </script>
         <div id="detailsDiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
+              <%
+               Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
+                    if (twitter != null){
+                out.write("<p><a id=\"signOut\" href=\"SignOut\">Sign Out</a></p>");
+                }
+                %>
             <div id="details">
             <h1 style="text-align: center;">Dovetune</h1>
-            <h1 style="text-align: center;"><a href="SignIn">Sign In to Twitter</a></h1>
+            <%
+                    if (twitter == null){
+                out.write("<h1 style=\"text-align: center;\"><a href=\"SignIn\">Sign In to Twitter</a></h1>");
+                }
+            %>
             <form action="search.jsp" method="GET">
                 <input type="text" size="100%" name="searchbox" id="search_box">
                 <input type="submit" value="Search">
             </form>
-            <input type="text" name="enterTweet" id="tweet">
-            <input type="hidden" id="songValue" value="${song}">
-            <input type="submit" onclick="changeIt()">
             <div style="border: solid;">
                 <h2 style="text-align: center;">${param.songName}</h2>
             </div>
+            </div>
+            <div id="tweetDiv">
+            <input type="text" class="tweetInput" name="enterTweet" id="tweet">
+            <input type="hidden" id="songValue" value="${song}">
+            <input type="submit" class="tweetButton" onclick="changeIt()" src="https://platform.twitter.com/widgets/images/btn.27237bab4db188ca749164efd38861b0.png" value="    Tweet!">
             </div>
             <ul id="tweetList">${list}</ul>
         </div>

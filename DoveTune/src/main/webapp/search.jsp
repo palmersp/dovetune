@@ -3,7 +3,9 @@
     Created on : Mar 13, 2015, 5:49:00 PM
     Author     : adam
 --%>
+<%@page import="twitter4j.Twitter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,8 +76,20 @@
             
         </script>
         <div id="searchdiv" style=" min-width: 700px;max-width: 700px; border: solid;" >
+            <%
+               Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
+                    if (twitter != null){
+                out.write("<p><a id=\"signOut\" href=\"SignOut\">Sign Out</a></p>");
+                }
+            %>
             <h1 style="text-align: center;">Dovetune</h1>
-            <h1 style="text-align: center;"><a href="SignIn">Sign In to Twitter</a></h1>
+            <%
+                    if (twitter == null){
+                out.write("<h1 style=\"text-align: center;\"><a href=\"SignIn\">Sign In to Twitter</a></h1>");
+                }
+            %>
+                    
+                
             <form action="search.jsp" method="GET">
                 <input type="text" name="searchbox" id="search_box">
                 <input type="submit" value="Search">

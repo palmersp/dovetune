@@ -6,21 +6,20 @@
 package com.mycompany.dovetune;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import twitter4j.Twitter;
-import twitter4j.auth.RequestToken;
 
 /**
  *
  * @author Spencer
  */
-@WebServlet(name = "Callback", urlPatterns = {"/Callback"})
-public class Callback extends HttpServlet {
+@WebServlet(name = "SignOut", urlPatterns = {"/SignOut"})
+public class SignOut extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,23 +32,12 @@ public class Callback extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-     
-        Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
-        RequestToken requestToken = (RequestToken)request.getSession().getAttribute("requestToken");
-        System.out.println( "TwitterCallbackServlet:requestToken:" + requestToken);
-        String verifier = request.getParameter("oauth_verifier");
-        
-        try {
-            twitter.getOAuthAccessToken(requestToken, verifier);
-            request.getSession().removeAttribute("requestToken");
-        } catch (Exception e) {
-         throw new ServletException(e);
-        }
-        
-         
-        
-        response.sendRedirect("search.jsp");
+       
+               Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
+               request.getSession(false).invalidate();
+               
+               response.sendRedirect("search.jsp");
+           
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

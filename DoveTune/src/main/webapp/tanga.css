@@ -253,7 +253,7 @@ a:hover, a.on {
     clear: both;
 }
 input[type=text]{
-    width: 90%;
+    width: 88%;
 }
 
 .hashtags {
@@ -261,4 +261,38 @@ input[type=text]{
 }
 .profileImg {
     float: left;
+}
+.notSignedIn{
+    color: #1E4662;
+}
+.notSignedIn:hover{
+    color: #D9EF6A;
+}
+#signOut {
+    background-color: #152A39;
+    color: #D9EF6A;
+    margin: 0px;
+    text-decoration: none;
+    font-family: 'Ubuntu Condensed';
+}
+#searchdiv p, #detailsDiv p{
+    margin: 0px;
+    background-color: #152A39;
+}
+
+#details{
+    background-color: #c5e3fd;
+}
+
+#tweetDiv {
+    background-color: #c5e3fd;
+}
+
+.tweetButton{
+    background: #f1f1f1 url("https://platform.twitter.com/widgets/images/btn.27237bab4db188ca749164efd38861b0.png") -25px 0px no-repeat;
+}
+
+.tweetInput[type=text] {
+    width: 87%;
+    margin-bottom: 2px;
 }
